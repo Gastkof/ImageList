@@ -20,12 +20,14 @@ import './style.css';
 
 class  ImageList extends Component {
 
+
+    //load data from JSON from the URL 
     componentDidMount() {
         fetch('https://picsum.photos/v2/list')
           .then((response) => response.json())
           .then((json) => {
-            this.setState({ imageUrl: json,
-                imageUrlId: json.id   });
+            this.setState({ imageUrl: json
+                   });
           })
           .catch((error) => console.error(error))
           .finally(() => {
@@ -33,28 +35,27 @@ class  ImageList extends Component {
           });
       }
 
-
+      //the proporties of the coponent
     constructor(props) {
         super(props);
     
 
         this.handleShowDialog = this.handleShowDialog.bind(this);
-
+//the state proprties
         this.state =  
      { 
        loader:true,
         imageUrl: [],
         isOpen: false,
-        imageUrlId:[],
+       // imageUrlId:[],
         selectedImage:""
 
      };
-     //this.selectedImage = this.imageUrlId.bind(this);
 
       }
  
 
-
+//to future work
       imageUrlId(e) {
         let imageUrlId = this.state.imageUrlId;
         if (e.currentTarget.dataset.id === 0 || e.currentTarget.dataset.id) {
@@ -66,7 +67,7 @@ class  ImageList extends Component {
     
 
 
-
+//handle the show of the modal as dialog
      handleShowDialog =(t)=>  {
         this.setState({ isOpen: !this.state.isOpen,
             selectedImage :t
@@ -76,30 +77,20 @@ class  ImageList extends Component {
         console.log("cliked");
       };
     
+
+      //function that open the image modal by click on the image list
       modalOpen(t) {
         this.setState({ isOpen: true,
             selectedImage :t });
       }
-    
+    //function that close the image modal by click on the image or the background
       modalClose() {
         this.setState({
           isOpen: false
         });
       }
     
-
-
-     styles = {
-
-        fontSize: 50,
-        fontWeight:"bold"
-        
-     }
-
- 
-    //  openModal = () => this.setState({ isOpen: true });
-    //  closeModal = () => this.setState({ isOpen: false });
-
+//the render function of what the web page will show the user
     render() { 
         let imageUrl = this.state.imageUrl;            
         let ID = []
@@ -107,18 +98,9 @@ class  ImageList extends Component {
             ID.push(imageUrl[i].id); 
         }
 
-  
-       
-
-        //let imageUrlId = this.state.imageUrlId.bind()  ;
-     
-        // React.createElement('h1')
         return <React.Fragment>
 
-    
-          
-                
-                <span  className={this.getBadgeClasses()}>{this.formatCount() } </span>
+
 
                     <ul  style={{ listStyle: 'none'}}>
 
@@ -130,23 +112,10 @@ class  ImageList extends Component {
 
                     </ul>
 
-            <button className ="btn btn-secondary btn-sm">Increment </button>
-
             <Modal
              onClick={this.handleShowDialog}
-           ///    className="modal"
-
-              // visible={this.state.visible}
-             //  width="90%"
-              // height="90%"
-               effect="fadeInUp"
-               
-             //  onClickAway={this.handleShowDialog()}
+               effect="fadeInUp"               
               show={this.state.isOpen} 
-          //   handleClose={}
-        
-          //      size="lg"
-             //   aria-labelledby="contained-modal-title-vcenter"
              animation={true}
              onHide={this.handleShowDialog}
                 centered
@@ -154,45 +123,23 @@ class  ImageList extends Component {
                   backgroundColor:'rgba(255,255,255,0.5)',
                 }}
               >
-     
-            
-
                    <img style={{width:'600px',height:'600px',
                    left: '0',
                    top: '0',
                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
                    touchaction: 'none',
                    overflow: 'hidden',
-                  // opacity: '1',
-                  // transition: opacity '225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-            
                    right: '0',
                    bottom: '0',
-                   // eslint-disable-next-line no-dupe-keys
                    touchaction: 'none',
                 }} src={this.state.selectedImage} alt=""/>
-
-
-                
-         
 
               </Modal>
 
         </React.Fragment>
         ;
     }
-    getBadgeClasses() {
-        let classes = "badge m-2 badge-";
-        classes += this.state.count === 0 ? "warning" : "primary";
-        return classes;
-    }
 
-    formatCount(){
-        const{ count} =this.state;
-            return count === 0? 'Zero'  :count; 
-
-        }
- 
       
 }
  
