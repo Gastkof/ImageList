@@ -2,21 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 import './style.css';
-//import Loader from 'react-loaders'
 
-//let loader = <Loader type="pacman" />
-// let obj = 
-// let list =[];
-
-//  for(let i in obj){
-//      console.log(i);
-//         list.push(i);
-
-//  }
-//const [show, setShow] = useState(false);
-
-//const handleClose = () => setShow(false);
-//const handleShow = () => setShow(true);
 
 class  ImageList extends Component {
 
@@ -35,25 +21,25 @@ class  ImageList extends Component {
           });
       }
 
-      //the proporties of the coponent
-    constructor(props) {
-        super(props);
-    
+        //the proporties of the coponent
+      constructor(props) {
+          super(props);
+      
 
-        this.handleShowDialog = this.handleShowDialog.bind(this);
-//the state proprties
-        this.state =  
-     { 
-       loader:true,
-        imageUrl: [],
-        isOpen: false,
-       // imageUrlId:[],
-        selectedImage:""
+          this.handleShowDialog = this.handleShowDialog.bind(this);
+  //the state proprties
+          this.state =  
+      { 
+        loader:true,
+          imageUrl: [],
+          isOpen: false,
+        // imageUrlId:[],
+          selectedImage:""
 
-     };
+      };
 
-      }
- 
+        }
+  
 
 //to future work
       imageUrlId(e) {
@@ -115,7 +101,7 @@ class  ImageList extends Component {
             <Modal
              onClick={this.handleShowDialog}
                effect="fadeInUp"               
-              show={this.state.isOpen} 
+               show={this.state.isOpen} 
              animation={true}
              onHide={this.handleShowDialog}
                 centered
@@ -131,7 +117,6 @@ class  ImageList extends Component {
                    overflow: 'hidden',
                    right: '0',
                    bottom: '0',
-                   touchaction: 'none',
                 }} src={this.state.selectedImage} alt=""/>
 
               </Modal>
